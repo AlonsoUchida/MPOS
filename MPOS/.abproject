@@ -1,0 +1,45 @@
+{
+  "ProjectName": "MPOS",
+  "ProjectGuid": "adf18c86-74e9-4f65-ac7d-bcd3fad6f79c",
+  "projectVersion": 1,
+  "AppIdentifier": "com.telerik.MPOS",
+  "DisplayName": "MPOS",
+  "Author": "",
+  "Description": "MPOS",
+  "BundleVersion": "1.0",
+  "AndroidVersionCode": "1",
+  "iOSDeviceFamily": [
+    "1",
+    "2"
+  ],
+  "iOSBackgroundMode": [],
+  "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
+  "FrameworkVersion": "3.7.0",
+  "AndroidPermissions": [
+    "android.permission.INTERNET"
+  ],
+  "DeviceOrientations": [
+    "Portrait",
+    "Landscape"
+  ],
+  "AndroidHardwareAcceleration": "false",
+  "iOSStatusBarStyle": "Default",
+  "Framework": "Cordova",
+  "WP8TileTitle": "",
+  "WP8Publisher": "",
+  "WP8Capabilities": [
+    "ID_CAP_NETWORKING",
+    "ID_CAP_WEBBROWSERCOMPONENT"
+  ],
+  "WP8Requirements": [],
+  "WP8PublisherID": "{50782a31-629d-4704-b969-8443a165544a}",
+  "WP8ProductID": "{f8ad67d1-dff4-4335-ad1f-5fbf9878abee}",
+  "WPSdk": "8.0",
+  "WP8PackageIdentityName": "1234Telerik.MPOS",
+  "WP8WindowsPublisherName": "CN=Telerik",
+  "WP8SupportedResolutions": [
+    "ID_RESOLUTION_WVGA",
+    "ID_RESOLUTION_WXGA",
+    "ID_RESOLUTION_HD720P"
+  ]
+}
