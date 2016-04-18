@@ -1,7 +1,15 @@
-<div data-role="view" data-title="Home View" data-layout="main" data-model="app.home" data-show="app.home.onShow" data-after-show="app.home.afterShow">
-
+<div data-role="view" data-title="Visa Net" data-layout="inicio" data-model="app.home" data-show="app.home.onShow" data-after-show="app.home.afterShow">
     <!-- START_CUSTOM_CODE_home -->
     <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
-
     <!-- END_CUSTOM_CODE_home -->
+
+    <div id="inicio">
+        <h2 class="amarillo">Valmar</h2>
+		<h1 class="azul">MPOS</h1>
+        <form class="formulario form-group col-xs-12">
+            <div class="col-xs-8 col-xs-offset-2">
+                <a data-role="button" data-bind="events: { click: homeModel.sesion }" class="primary btn btn-default col-xs-8 col-xs-offset-2">Pagar</a>
+            </div>
+        </form>
+    </div>
 </div>

@@ -1,11 +1,42 @@
 'use strict';
 
 app.home = kendo.observable({
-    onShow: function() {},
+    onShow: function() {
+       
+    },
     afterShow: function() {}
 });
 
-// START_CUSTOM_CODE_home
-// Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
+(function (parent) {
+    var homeModel = kendo.observable({
+        fields: {
+            usuario: '',
+            contrasena: '',
+        },
+        submit: function () {
+            //console.log(buscarModel.fields.busdocumento+"-"+buscarModel.fields.busnumero);
 
-// END_CUSTOM_CODE_home
+        },
+        sesion: function () {
+
+        var success = function(message){
+            console.log(message);
+        };
+        var error = function(error){
+            console.log(error);
+        }
+        
+        var requestCode = '454545';
+        var email = 'agarcia@hotmail.com';
+        var moneda = '604';
+		var monto = '150.52';
+     
+		var args = [requestCode, email, moneda, monto];
+        
+        mpos.callmpos(args, success, error);
+
+        }
+    });
+
+    parent.set('homeModel', homeModel);
+})(app.home);
