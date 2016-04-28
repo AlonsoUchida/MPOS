@@ -26,12 +26,13 @@ app.home = kendo.observable({
             console.log(error);
         }
         
-        var requestCode = '454545';
+        var requestCode = '6535655';
         var email = 'agarcia@hotmail.com';
         var moneda = '604';
 		var monto = '150.52';
+        var comercio = '580';
      
-		var args = [requestCode, email, moneda, monto];
+		var args = [requestCode, email, moneda, monto, comercio];
         
         mpos.callmpos(args, success, error);
 

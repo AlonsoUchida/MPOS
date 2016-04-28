@@ -9,8 +9,9 @@ module.exports = {
 			var email = options[1];
 			var moneda = options[2];
             var monto = options[3];
+         	var comercio = options[4];
 
-			var args = [requestCode, email, moneda, monto];
+			var args = [requestCode, email, moneda, monto, comercio];
 
 			cordova.exec(successCallback, errorCallback, "Mpos", "callmpos", args);
     }

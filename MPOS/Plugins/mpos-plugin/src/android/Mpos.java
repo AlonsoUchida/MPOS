@@ -38,23 +38,19 @@ import android.content.Intent;
  */
 public class Mpos extends CordovaPlugin {
 
+    private static final String MODULO = "CAMBIO_PIN";
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
 
         if (action.equals("callmpos")) {
-
-            /*if (android.os.Build.VERSION.SDK_INT > 9) {
-                StrictMode.ThreadPolicy policy =
-                        new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                StrictMode.setThreadPolicy(policy);
-            }*/
             try {
                 String requestCode = data.getString(0);
                 String email = data.getString(1);
                 String moneda = data.getString(2);
 				String monto = data.getString(3);
-                Alert("Field:", requestCode + " " + email + " " + moneda + " " + monto);
+                String comercio = data.getString(4);
+                Alert("Field:", requestCode + " " + email + " " + moneda + " " + monto + " " + comercio);
                 
                 Intent intent = new Intent("android.intent.action.MAIN");
 				intent.addCategory("android.intent.category.LAUNCHER");
@@ -62,14 +58,12 @@ public class Mpos extends CordovaPlugin {
 				intent.setComponent( 
                     new ComponentName("com.procesos.mc", "com.procesos.mc.Mediospago00mpos")
 				);
+                intent.putExtra("MODULO", MODULO);
 				intent.putExtra("REQUESTCODE", requestCode);
-				intent.putExtra("EMAIL", email);
-				intent.putExtra("MONEDA", moneda);
-				intent.putExtra("MONTO", monto);
+				intent.putExtra("EMAIL", email);                
+				intent.putExtra("MONEDA", moneda); 
+                intent.putExtra("COMERCIO", comercio);
                 this.cordova.startActivityForResult(this, intent, 3579);
-
-                // iniciar actividad VisaNet
-                //Intent intent = new Intent(this.cordova.getActivity().getApplicationContext(), VisaNetPaymentActivity.class);
 
             } catch (Exception e) {
                 Alert("Error:", e.getMessage());
@@ -88,16 +82,16 @@ public class Mpos extends CordovaPlugin {
 	public void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
 		if (requestCode == 3579){
-				 
-			if(resultCode == Activity.RESULT_OK && data != null) {
+			//if(resultCode == Activity.RESULT_OK && data != null) {
 				int req= data.getIntExtra("REQUESTCODE", 0);
 				int resp = data.getIntExtra("RESPONSECODE", 0);
 			    String msg = data.getStringExtra("MENSAJE");
 				String ref = data.getStringExtra("REFERENCIAPMP");
 				String apr = data.getStringExtra("APR");
 				String voucher = data.getStringExtra("VOUCHER");
-			}
-			if(resultCode == Activity.RESULT_CANCELED ) {}
+                Alert("Field On Result:", Integer.toString(req) + " " + Integer.toString(resp) + " " + msg + " " + ref + " " + apr + " " + voucher);
+			//}
+			//if(resultCode == Activity.RESULT_CANCELED ) {}
 	    }
 	}
 
