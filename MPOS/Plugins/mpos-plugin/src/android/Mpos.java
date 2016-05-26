@@ -1,9 +1,11 @@
 package com.mpos.plugin;
 
+import org.apache.cordova.*;
+/*
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
-import org.apache.cordova.CordovaWebView;
+import org.apache.cordova.CordovaWebView;*/
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,11 +41,12 @@ import android.content.Intent;
 public class Mpos extends CordovaPlugin {
 
     private static final String MODULO = "CAMBIO_PIN";
-	private CallbackContext callbackContext = null;
+	private CallbackContext _callbackContext = null;
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
 
         if (action.equals("callmpos")) {
+            _callbackContext = callbackContext;
             try {
                 String requestCode = data.getString(0);
                 String email = data.getString(1);
@@ -64,20 +67,13 @@ public class Mpos extends CordovaPlugin {
 				intent.putExtra("MONEDA", moneda); 
                 //intent.putExtra("COMERCIO", comercio);
                 this.cordova.startActivityForResult(this, intent, 3579);
-
+                
             } catch (Exception e) {
                 Alert("Error:", e.getMessage());
             }
-
-            /*JSONObject parameter = new JSONObject();
-                parameter.put("param1", "event.getParam1()");
-                parameter.put("param2", "event.getParam2()");
-       		callbackContext.success(parameter);*/
             return true;
-        } 
-       
+        }      
         return false;
-
     }
 
 	@Override
@@ -86,26 +82,32 @@ public class Mpos extends CordovaPlugin {
 		if (requestCode == 3579){
 			//if(resultCode == Activity.RESULT_OK && data != null) {
             try{
+ 
 				int req= data.getIntExtra("REQUESTCODE", 0);
 				int resp = data.getIntExtra("RESPONSECODE", 0);
 			    String msg = data.getStringExtra("MENSAJE");
 				String ref = data.getStringExtra("REFERENCIAPMP");
 				String apr = data.getStringExtra("APR");
 				String voucher = data.getStringExtra("VOUCHER");
-              
-            	Alert("REQUESTCODE", Integer.toString(req));
+                
+            	/*Alert("REQUESTCODE", Integer.toString(req));
             	Alert("RESPONSECODE", Integer.toString(resp));
             	Alert("MENSAJE", msg);
             	Alert("REFERENCIAPMP", ref);
             	Alert("APR", apr);
-            	Alert("VOUCHER", voucher);
+            	Alert("VOUCHER", voucher);*/
             
 				JSONObject parameter = new JSONObject();
-            	parameter.put("param1", Integer.toString(req));
-              	parameter.put("param2", Integer.toString(resp));
-       			callbackContext.success(parameter);
+            	parameter.put("req", Integer.toString(req));
+              	parameter.put("resp", Integer.toString(resp));
+                parameter.put("msg", msg);
+                parameter.put("ref", ref);
+                parameter.put("apr", apr);
+                parameter.put("voucher", voucher);
+       			_callbackContext.success(parameter);        
+                return;
             }catch (Exception e) {
-                Alert("Error:", e.getMessage());
+                Alert("Error on Result:", e.getMessage());
             }
 			//}
 			//if(resultCode == Activity.RESULT_CANCELED ) {}

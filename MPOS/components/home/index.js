@@ -18,12 +18,17 @@ app.home = kendo.observable({
 
         },
         sesion: function () {
-
         var success = function(message){
-            console.log(message);
-            alert(message);
+            var title = "Paratemer retrieved: "
+            alert(title + message["req"]);
+            alert(title + message["resp"]);
+            alert(title + message["msg"]);
+            alert(title + message["ref"]);
+            alert(title + message["apr"]);
+            alert(title + message["voucher"]);
         };
         var error = function(error){
+            alert(message);
             console.log(error);
         }
         
