@@ -21,6 +21,7 @@ app.home = kendo.observable({
 
         var success = function(message){
             console.log(message);
+            alert(message);
         };
         var error = function(error){
             console.log(error);

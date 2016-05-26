@@ -39,7 +39,7 @@ import android.content.Intent;
 public class Mpos extends CordovaPlugin {
 
     private static final String MODULO = "CAMBIO_PIN";
-
+	private CallbackContext callbackContext = null;
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
 
@@ -62,20 +62,22 @@ public class Mpos extends CordovaPlugin {
 				intent.putExtra("REQUESTCODE", requestCode);
 				intent.putExtra("EMAIL", email);                
 				intent.putExtra("MONEDA", moneda); 
-                intent.putExtra("COMERCIO", comercio);
+                //intent.putExtra("COMERCIO", comercio);
                 this.cordova.startActivityForResult(this, intent, 3579);
 
             } catch (Exception e) {
                 Alert("Error:", e.getMessage());
             }
 
+            /*JSONObject parameter = new JSONObject();
+                parameter.put("param1", "event.getParam1()");
+                parameter.put("param2", "event.getParam2()");
+       		callbackContext.success(parameter);*/
             return true;
+        } 
+       
+        return false;
 
-        } else {
-
-            return false;
-
-        }
     }
 
 	@Override
@@ -83,13 +85,28 @@ public class Mpos extends CordovaPlugin {
 	{
 		if (requestCode == 3579){
 			//if(resultCode == Activity.RESULT_OK && data != null) {
+            try{
 				int req= data.getIntExtra("REQUESTCODE", 0);
 				int resp = data.getIntExtra("RESPONSECODE", 0);
 			    String msg = data.getStringExtra("MENSAJE");
 				String ref = data.getStringExtra("REFERENCIAPMP");
 				String apr = data.getStringExtra("APR");
 				String voucher = data.getStringExtra("VOUCHER");
-                Alert("Field On Result:", Integer.toString(req) + " " + Integer.toString(resp) + " " + msg + " " + ref + " " + apr + " " + voucher);
+              
+            	Alert("REQUESTCODE", Integer.toString(req));
+            	Alert("RESPONSECODE", Integer.toString(resp));
+            	Alert("MENSAJE", msg);
+            	Alert("REFERENCIAPMP", ref);
+            	Alert("APR", apr);
+            	Alert("VOUCHER", voucher);
+            
+				JSONObject parameter = new JSONObject();
+            	parameter.put("param1", Integer.toString(req));
+              	parameter.put("param2", Integer.toString(resp));
+       			callbackContext.success(parameter);
+            }catch (Exception e) {
+                Alert("Error:", e.getMessage());
+            }
 			//}
 			//if(resultCode == Activity.RESULT_CANCELED ) {}
 	    }
