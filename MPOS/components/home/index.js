@@ -46,8 +46,18 @@ app.home = kendo.observable({
 
             
         var success = function(message){
-            var title = "Paratemer retrieved: "
-            alert(title + message["devicename"]);
+            var title = "Paratemer retrieved: ";
+            alert("deviceNameByBluetooth: " + message["deviceNameByBluetooth"]);
+            alert("devicename: " + message["devicename"]);
+            alert("board: " + message["board"]);
+            alert("bootloader: " + message["bootloader"]);
+            alert("display: " + message["display"]); 
+            alert("fingerprint: " + message["fingerprint"]);
+            alert("hardware: " + message["hardware"]);
+            alert("host: " + message["host"]);
+            alert("id: " + message["id"]);
+            alert("user: " + message["user"]);
+            
         };
         var error = function(error){
             console.log(error);

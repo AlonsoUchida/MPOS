@@ -15,6 +15,7 @@ import java.util.HashMap;
 
 import org.json.JSONObject;
 import android.os.Build;
+import android.bluetooth.BluetoothAdapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -76,10 +77,19 @@ public class Mpos extends CordovaPlugin {
             return true;
         }else if(action.equals("calldevicename")){           
              JSONObject parameter = new JSONObject();
-            Alert("antes de","antes de");
+            BluetoothAdapter myDevice = BluetoothAdapter.getDefaultAdapter();
+    		String deviceNameByBluetooth = myDevice.getName();
             String devicename =  getDeviceName();
+            parameter.put("deviceNameByBluetooth", deviceNameByBluetooth);
             parameter.put("devicename", devicename);
-            Alert("devicename",devicename);
+            parameter.put("board", Build.BOARD);
+            parameter.put("bootloader", Build.BOOTLOADER);
+            parameter.put("display", Build.DISPLAY);
+            parameter.put("fingerprint", Build.FINGERPRINT);
+            parameter.put("hardware", Build.HARDWARE);
+            parameter.put("host", Build.HOST);
+            parameter.put("id", Build.ID);
+            parameter.put("user", Build.USER);
        		_callbackContext.success(parameter);   
             Alert("done",devicename);     
             return true;
