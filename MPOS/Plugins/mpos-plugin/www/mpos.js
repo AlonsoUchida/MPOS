@@ -2,7 +2,7 @@
 
 module.exports = {
      callmpos: function (options, successCallback, errorCallback) {
-            console.log(options);
+            //console.log(options);
 			options = options || {};
 
 			var requestCode = options[0];
@@ -14,6 +14,12 @@ module.exports = {
 			var args = [requestCode, email, moneda, monto, comercio];
 
 			cordova.exec(successCallback, errorCallback, "Mpos", "callmpos", args);
+    },
+     calldevicename: function (options, successCallback, errorCallback) {
+            //console.log(options);
+         	console.log("options");
+         	var args = [''];
+			cordova.exec(successCallback, errorCallback, "Mpos", "calldevicename", args);
     }
     
 };
