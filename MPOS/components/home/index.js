@@ -28,7 +28,6 @@ app.home = kendo.observable({
             alert(title + message["voucher"]);
         };
         var error = function(error){
-            alert(message);
             console.log(error);
         }
         
@@ -39,10 +38,24 @@ app.home = kendo.observable({
         var comercio = '580';
      
 		var args = [requestCode, email, moneda, monto, comercio];
-        
-        mpos.callmpos(args, success, error);
+      
+       },
+          sesion2: function () {
+                
+      mpos.callmpos(args, success, error);
 
+            
+        var success = function(message){
+            var title = "Paratemer retrieved: "
+            alert(title + message["devicename"]);
+        };
+        var error = function(error){
+            console.log(error);
         }
+        var args = [''];
+        mpos.calldevicename(args, success, error);
+              
+          }
     });
 
     parent.set('homeModel', homeModel);
